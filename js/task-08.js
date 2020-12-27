@@ -1,44 +1,31 @@
-const btnCreateDivs = document.querySelector('button[data-action="render"]')
-
-const btnDeleteDivs = document.querySelector('button[data-action="destroy"]')
-
-const input = document.querySelector("div#controls > input")
-
-const box = document.querySelector("div#boxes")
-
-let amount = 0
-let width = 20
-let height = 20
-let color
-
+const inputRef = document.querySelector('#controls > input');
+const boxRef = document.querySelector('#boxes');
+const btnRenderRef = document.querySelector('button[data-action="render"]');
+const btnDestroyRef = document.querySelector('button[data-action="destroy"]');
+let amount = 0;
+let itemWidth = 20;
+let itemHeight = 20;
 function createBoxes(amount) {
-	amount = +input.value
-	let arr = []
-	for (let i = 0; i < amount; i += 1) {
-		width += 10
-		height += 10
-		const tagDiv = document.createElement("div")
-		tagDiv.style.backgroundColor = `${backgroundColorRandom()}`
-		tagDiv.style.width = `${width}px`
-		tagDiv.style.height = `${height}px`
-		arr.push(tagDiv)
+	amount = +inputRef.value;
+	let arr = [];
+	for (let i = 1; i <= amount; i++) {
+		itemWidth += 10;
+		itemHeight += 10;
+		const newEl = document.createElement('div');
+		newEl.style.height = itemHeight + 'px';
+		newEl.style.width = itemWidth + 'px';
+		newEl.style.backgroundColor = '#' + (Math.random().toString(16) + '000000').substring(2, 8).toUpperCase();
+		arr.push(newEl);
 	}
-	return box.append(...arr)
+	boxRef.append(...arr);
 }
 
 function destroyBoxes() {
-	box.textContent = ""
-	input.value = 0
-	width = 20
-	height = 20
-	return
+	boxRef.innerHTML = '';
+	inputRef.value = '';
+	itemWidth = 20;
+	itemHeight = 20;
 }
-function backgroundColorRandom() {
-	return "rgb(" + r() + "," + r() + "," + r() + ")"
-}
-function r() {
-	return Math.round(255.0 * Math.random());
-}
-// слушатели
-btnCreateDivs.addEventListener("click", () => createBoxes())
-btnDeleteDivs.addEventListener("click", destroyBoxes)
+btnRenderRef.addEventListener('click', () => createBoxes(amount));
+btnDestroyRef.addEventListener('click', destroyBoxes);
+
