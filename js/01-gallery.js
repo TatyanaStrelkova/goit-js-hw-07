@@ -1,8 +1,3 @@
-/* 
-5. Замена значения атрибута src элемента <img> в модальном окне 
-перед открытием. Используй готовую разметку модального окна 
-с изображением из примеров библиотеки basicLightbox. */
-
 import { galleryItems } from './gallery-items.js';
 
 const containerWithGalleryItems = document.querySelector('.gallery');
@@ -44,12 +39,6 @@ function onGalleryItemsClick(e) {
 }
 
 window.addEventListener('keydown', closeModalPressEsc)
-
-/* window.addEventListener('keydown', e => { 
-    if (e.key === "Escape") { 
-        instance.close();
-    }
-}) */
 
 function closeModalPressEsc(e) {
   if (e.key === "Escape") {
