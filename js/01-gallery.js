@@ -2,13 +2,9 @@ import { galleryItems } from './gallery-items.js';
 
 const containerWithGalleryItems = document.querySelector('.gallery');
 const markUp = createGalleryMarkUp(galleryItems);
-const instance = basicLightbox.create(`
-    <img src="${e.target.dataset.source}" width="800" height="600">
-`);
 
 containerWithGalleryItems.insertAdjacentHTML('afterbegin', markUp);
 containerWithGalleryItems.addEventListener('click', onGalleryItemsClick);
-/* window.addEventListener('keydown', onEscKeyPress); */
 
 function createGalleryMarkUp(galleryItems) {
     return galleryItems.
@@ -33,15 +29,20 @@ function onGalleryItemsClick(e) {
     if (e.target.nodeName !== "IMG") {
         return;
     }
-  instance.show()   
-  
-}
 
-/* function onEscKeyPress(event) {
-  if (event.key === "Escape") {
+  const instance = basicLightbox.create(`
+    <img src="${e.target.dataset.source}" width="800" height="600">`)
+  
+  instance.show();
+  
+  if (instance.visible()) {
+    window.addEventListener('keydown', (e) => { 
+       if (e.key === "Escape") {
     instance.close();
   }
-}  */
+    });
+  }
+}
 
 
 
