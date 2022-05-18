@@ -4,9 +4,8 @@ const containerWithGalleryItems = document.querySelector('.gallery');
 const markUp = createGalleryMarkUp(galleryItems);
 
 containerWithGalleryItems.insertAdjacentHTML('afterbegin', markUp)
-containerWithGalleryItems.addEventListener('click', () => {
-    const lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250, });
-})
+
+const lightbox = new SimpleLightbox('.gallery a', { captionsData: "alt", captionDelay: 250, });
 
 function createGalleryMarkUp(galleryItems) {
     return galleryItems.
